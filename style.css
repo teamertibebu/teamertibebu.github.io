@@ -1,0 +1,54 @@
+#header {
+  text-align: center;
+  font-size: 30px;
+  background-color: steelblue;
+  margin-top: 0;
+}
+
+#upperDiv {
+  margin-bottom: 20px;
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+#timelineMain {
+  background-color: steelblue;
+}
+
+.tweetDiv {
+  background-color: antiquewhite;
+  /* border-bottom: 5px solid azure; */
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.user:hover {
+  cursor: pointer;
+  color: green;
+  font-size: 20px;
+}
+
+#tweetBox {
+  resize: none;
+  display: block;
+
+}
+
+#username {
+  display: block;
+}
+
+
+#tweetButton {
+  display: block;
+
+}
+
+#refreshButton {
+  margin: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
+}

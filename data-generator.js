@@ -47,10 +47,14 @@ const randomMessage = () => {
 
 // Generate random tweets on a random schedule
 const generateRandomTweet = () => {
+  let date = new Date();
+  let hours = date.getHours() - 12 <= 0 ? date.getHours() : date.getHours() - 12;
+  let minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  let seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
   const tweet = {
     user: randomElement(users),
     message: randomMessage(),
-    created_at: new Date(),
+    created_at: `${hours}:${minutes}:${seconds}`
   };
   addTweet(tweet);
 };
@@ -67,8 +71,15 @@ scheduleNextTweet();
 
 // Utility function for letting students add "write a tweet" functionality
 // (NOTE: Not used by the rest of this file.)
+
+window.visitor = 'Guest'
+const visitor = window.visitor;
 const writeTweet = (message) => {
-  const visitor = window.visitor;
+  //Create properly formatted time stamps...
+  let date = new Date();
+  let hours = date.getHours() - 12 <= 0 ? date.getHours() : date.getHours() - 12;
+  let minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  let seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
 
   if (!visitor){
     throw new Error('Set the global visitor property!');
@@ -77,6 +88,7 @@ const writeTweet = (message) => {
   const tweet = {
     user: visitor,
     message: message,
+    created_at: `${hours}:${minutes}:${seconds}`
   };
   addTweet(tweet);
 };
