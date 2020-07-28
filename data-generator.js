@@ -54,7 +54,7 @@ const generateRandomTweet = () => {
   const tweet = {
     user: randomElement(users),
     message: randomMessage(),
-    created_at: `${hours}:${minutes}:${seconds}`
+    created_at: new Date(),
   };
   addTweet(tweet);
 };
@@ -88,7 +88,7 @@ const writeTweet = (message) => {
   const tweet = {
     user: visitor,
     message: message,
-    created_at: `${hours}:${minutes}:${seconds}`
+    created_at: new Date(),
   };
   addTweet(tweet);
 };

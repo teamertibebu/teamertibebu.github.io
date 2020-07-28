@@ -1,32 +1,57 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: #FFD700;
+}
+
 #header {
   text-align: center;
-  font-size: 30px;
-  background-color: steelblue;
+  font-size: 230px;
+  /* background-color: steelblue; */
   margin-top: 0;
+  padding-top: 0;
+  margin-right: 20px;
+  display: inline;
+  float: right;
+  text-transform: lowercase;
+  position: fixed;
+  left: 350px;
+  z-index: -1;
 }
 
 #upperDiv {
   margin-bottom: 20px;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   padding: 10px;
 }
 
 #timelineMain {
-  background-color: steelblue;
+  /* background-color: antiquewhite; */
+  z-index: 0;
 }
 
 .tweetDiv {
-  background-color: antiquewhite;
-  /* border-bottom: 5px solid azure; */
+  background-color: #A52A2A;
+  border: 5px solid black;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
 }
 
+.user {
+  display: inline;
+  font-weight: bolder;
+  font-size: 18px;
+  transition: font-size 0.3s;
+}
+
 .user:hover {
   cursor: pointer;
-  color: green;
-  font-size: 20px;
+  color: #FFD700;
+  font-size: 23px;
+}
+
+.tweet {
+  font-size: 17px;
 }
 
 #tweetBox {
@@ -37,6 +62,7 @@
 
 #username {
   display: block;
+  margin-bottom: 10px;
 }
 
 
@@ -49,6 +75,31 @@
   margin: 10px;
 }
 
+.button {
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:1em 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  /* color:#FFFFFF; */
+  text-align:center;
+  transition: all 0.2s;
+  background-color: none;
+}
+
 .button:hover {
   cursor: pointer;
+  background-color:#FFFFFF;
+  font-size: 15px;
 }
+
+@media all and (max-width:30em){
+   .button{
+    display:block;
+    margin:0.4em auto;
+   }
+  }
