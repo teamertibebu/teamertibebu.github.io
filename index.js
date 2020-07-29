@@ -11,33 +11,42 @@ $(document).ready(() => {
   //Input to hold username..
   let $username = $('<input>').attr({'id': 'username', 'type': 'text','placeholder':'Username'}).prependTo($upperDiv)
 
-  // console.log(streams.users)
-
 
   //Send tweet button...
-  streams.users['Guest'] = []
+  // streams.users[visitor] = []
+  let tally = 0;
   let $tweetButton = $('<button>').attr('class','button').text('Send Twidd').appendTo($upperDiv).click(function() {
   let value = $tweetBox.val();
-  writeTweet(value)
+  let name = $username.val();
+  $refreshButton.hide();
+  if(tally === 0) {
+    window.visitor = name;
+    streams.users[name] = [];
+    writeTweet(value);
+  } else {
+    writeTweet(value);
+  }
+  tally++;
    $username.remove();
    $tweetBox.val('');
    
    const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
    const $tweet = $('<div>').attr('class', 'tweet').text(`${value}`).appendTo($tweetDiv);
-     const $user = $('<div>').attr('class', 'user').text(`@${$username.val()}`).appendTo($tweetDiv).click(function() {
+     const $user = $('<div>').attr('class', 'user').text(`@${name}`).appendTo($tweetDiv).click(function() {
        $timeline.empty();
-       streams.users['Guest'].forEach(tweet => {
+       streams.users[name].forEach(tweet => {
          const time = moment(tweet.created_at).fromNow();
           const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
           const $tweet = $('<div>').attr('class', 'tweet').text(`${tweet.message}`).appendTo($tweetDiv);
-          const $user = $('<div>').attr('class', 'user').text(`@${$username.val()}`).appendTo($tweetDiv);
+          const $user = $('<div>').attr('class', 'user').text(`@${name}`).appendTo($tweetDiv);
           const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
         })
   
         //Home Button!
-        let $homeButton = $('<button>').text('Home Feed').attr({'class': 'button'}).prependTo($timelineMain).click(function() {
+        let $homeButton = $('<button>').text('Home Feed').attr({'id':'homeButton','class': 'button'}).prependTo($timelineMain).click(function() {
           $timeline.empty();
-          $homeButton.remove();
+          $homeButton.hide();
+          $refreshButton.show()
           let tweets = streams.home;
       
           tweets.forEach(tweet => {
@@ -45,7 +54,7 @@ $(document).ready(() => {
   
             const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
             const $tweet = $('<div>').attr('class', 'tweet').text(`${tweet.message}`).appendTo($tweetDiv);
-              const $user = $('<div>').attr('class', 'user').text(`@${tweet.user}`).appendTo($tweetDiv).click(function() {
+            const $user = $('<div>').attr('class', 'user').text(`@${tweet.user}`).appendTo($tweetDiv).click(function() {
                 $timeline.empty();
         
                 for(let key in streams.users) {
@@ -71,7 +80,7 @@ $(document).ready(() => {
   
   
       });
-    const $date = $('<div>').attr('class', 'date').text(moment(streams.users['Guest'][streams.users['Guest'].length - 1].created_at).fromNow()).appendTo($tweetDiv);
+    const $date = $('<div>').attr('class', 'date').text(moment(streams.users[name][streams.users[name].length - 1].created_at).fromNow()).appendTo($tweetDiv);
     
   })
   
@@ -85,12 +94,12 @@ $(document).ready(() => {
   
   const $tweets = streams.home.map((tweet) => {
     const time = moment(tweet.created_at).fromNow();
+
     const $tweetDiv = $('<div></div>').attr('class', 'tweetDiv').appendTo($timeline);
-    // const text = `@${tweet.user}: ${tweet.message} ${tweet.created_at}`;
     const $tweet = $('<div>').attr('class', 'tweet').text(`${tweet.message}`).appendTo($tweetDiv);
-      const $user = $('<div>').attr('class', 'user').text(`@${tweet.user}`).appendTo($tweetDiv).click(function() {
+    const $user = $('<div>').attr('class', 'user').text(`@${tweet.user}`).appendTo($tweetDiv).click(function() {
         $timeline.empty();
-  
+        $refreshButton.hide();
         for(let key in streams.users) {
           if(key === tweet.user) {
             streams.users[key].forEach(element => {
@@ -105,9 +114,10 @@ $(document).ready(() => {
         }
   
         //Home Button!
-        let $homeButton = $('<button>').text('Home Feed').attr({'class': 'button'}).prependTo($timelineMain).click(function() {
+        let $homeButton = $('<button>').text('Home Feed').attr({'id':'homeButton','class': 'button'}).prependTo($timelineMain).click(function() {
           $timeline.empty();
-          $homeButton.remove();
+          $homeButton.hide();
+          $refreshButton.show()
           let tweets = streams.home;
       
           tweets.forEach(tweet => {
@@ -161,7 +171,7 @@ let $refreshButton = $('<button>').text('Show New Twidds').attr({'class': 'butto
     const $tweet = $('<div>').attr('class', 'tweet').text(`${tweets[i].message}`).appendTo($tweetDiv);
       const $user = $('<div>').attr('class', 'user').text(`@${tweets[i].user}`).appendTo($tweetDiv).click(function() {
         $timeline.empty();
-  
+        $refreshButton.hide()
         for(let key in streams.users) {
           if(key === tweets[i].user) {
             streams.users[key].forEach(element => {
@@ -176,9 +186,10 @@ let $refreshButton = $('<button>').text('Show New Twidds').attr({'class': 'butto
         }
   
         //Home Button!
-        let $homeButton = $('<button>').text('Home Feed').attr({'class': 'button'}).prependTo($timelineMain).click(function() {
+        let $homeButton = $('<button>').text('Home Feed').attr({'id':'homeButton','class': 'button'}).prependTo($timelineMain).click(function() {
           $timeline.empty();
-          $homeButton.remove();
+          $homeButton.hide();
+          $refreshButton.show();
           let tweets = streams.home;
       
           tweets.forEach(tweet => {

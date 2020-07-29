@@ -72,9 +72,9 @@ scheduleNextTweet();
 // Utility function for letting students add "write a tweet" functionality
 // (NOTE: Not used by the rest of this file.)
 
-window.visitor = 'Guest'
-const visitor = window.visitor;
+// window.visitor = 'Guest'
 const writeTweet = (message) => {
+  const visitor = window.visitor;
   //Create properly formatted time stamps...
   let date = new Date();
   let hours = date.getHours() - 12 <= 0 ? date.getHours() : date.getHours() - 12;
