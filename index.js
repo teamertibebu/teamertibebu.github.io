@@ -39,7 +39,7 @@ $(document).ready(() => {
           const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
           const $tweet = $('<div>').attr('class', 'tweet').text(`${tweet.message}`).appendTo($tweetDiv);
           const $user = $('<div>').attr('class', 'user').text(`@${name}`).appendTo($tweetDiv);
-          const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
+          const $date = $('<div>').attr({'class': 'date', 'data-time': tweet.created_at}).text(`${time}`).appendTo($tweetDiv);
         })
   
         //Home Button!
@@ -63,24 +63,24 @@ $(document).ready(() => {
                       const time = moment(element.created_at).fromNow();
     
                       const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
+                      const $tweet = $('<div>').attr('class', 'tweet').text(`${element.message}`).appendTo($tweetDiv)
                       if(element.user === 'Guest') {
                         const $user = $('<div>').attr('class', 'user').text(`@${$username.val()}`)
                       } else {
                         const $user = $('<div>').attr('class', 'user').text(`@${element.user}`).appendTo($tweetDiv);
                       }
-                      const $tweet = $('<div>').attr('class', 'tweet').text(`${element.message}`).appendTo($tweetDiv)
-                      const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv)
+                      const $date = $('<div>').attr({'class': 'date', 'data-time': element.created_at}).text(`${time}`).appendTo($tweetDiv)
                     })
                   }
                 }
               });
-            const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
+            const $date = $('<div>').attr({'class': 'date', 'data-time': tweet.created_at}).text(`${time}`).appendTo($tweetDiv);
           })
         })
   
   
       });
-    const $date = $('<div>').attr('class', 'date').text(moment(streams.users[name][streams.users[name].length - 1].created_at).fromNow()).appendTo($tweetDiv);
+    const $date = $('<div>').attr({'class': 'date', 'data-time': streams.users[name][streams.users[name].length - 1].created_at}).text(moment(streams.users[name][streams.users[name].length - 1].created_at).fromNow()).appendTo($tweetDiv);
     
   })
   
@@ -108,7 +108,7 @@ $(document).ready(() => {
               const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
               const $tweet = $('<div>').attr('class', 'tweet').text(`${element.message}`).appendTo($tweetDiv)
               const $user = $('<div>').attr('class', 'user').text(`@${element.user}`).appendTo($tweetDiv);
-              const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv)
+              const $date = $('<div>').attr({'class': 'date', 'data-time': element.created_at}).text(`${time}`).appendTo($tweetDiv)
             })
           }
         }
@@ -136,12 +136,12 @@ $(document).ready(() => {
                       const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
                       const $tweet = $('<div>').attr('class', 'tweet').text(`${element.message}`).appendTo($tweetDiv)
                       const $user = $('<div>').attr('class', 'user').text(`@${element.user}`).appendTo($tweetDiv);
-                      const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv)
+                      const $date = $('<div>').attr({'class': 'date', 'data-time': element.created_at}).text(`${time}`).appendTo($tweetDiv)
                     })
                   }
                 }
               });
-            const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
+            const $date = $('<div>').attr({'class': 'date', 'data-time': tweet.created_at}).text(`${time}`).appendTo($tweetDiv);
           })
         })
   
@@ -180,7 +180,7 @@ let $refreshButton = $('<button>').text('Show New Twidds').attr({'class': 'butto
               const $tweetDiv = $('<div>').attr('class', 'tweetDiv').prependTo($timeline);
               const $tweet = $('<div>').attr('class', 'tweet').text(`${element.message}`).appendTo($tweetDiv)
               const $user = $('<div>').attr('class', 'user').text(`@${element.user}`).appendTo($tweetDiv);
-              const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv)
+              const $date = $('<div>').attr({'class': 'date', 'data-time': element.created_at}).text(`${time}`).appendTo($tweetDiv)
             })
           }
         }
@@ -217,14 +217,14 @@ let $refreshButton = $('<button>').text('Show New Twidds').attr({'class': 'butto
               }
             });
             const $tweet = $('<div>').attr('class', 'tweet').text(`${tweet.message}`).appendTo($tweetDiv);
-            const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
+            const $date = $('<div>').attr({'class': 'date', 'data-time': tweet.created_at}).text(`${time}`).appendTo($tweetDiv);
           })
         })
   
   
   
       });
-    const $date = $('<div>').attr('class', 'date').text(`${time}`).appendTo($tweetDiv);
+    const $date = $('<div>').attr({'class': 'date', 'data-time': tweets[i].created_at}).text(`${time}`).appendTo($tweetDiv);
 
 
 
